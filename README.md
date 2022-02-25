@@ -1,2 +1,5 @@
 # keshihua_class
 可视化作业
+包含可视化的python代码与echarts代码
+数据放在data里
+朱比特文件里没有图片加载，因为实际运行实在kaggle云端服务器，只是为了分享而统一搬到git上
