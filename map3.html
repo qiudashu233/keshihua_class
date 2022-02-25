@@ -1,0 +1,339 @@
+<div id="worldMap" style="width: 1000px;height: 500px;border: 1px solid #ddd;"></div>
+
+19121430 吴沂桓
+<script src="echarts.min.js"></script>
+<script src="world.js"></script>
+
+<script>
+   // 绘制图表
+   let worldChart = echarts.init(document.getElementById('worldMap'));
+   
+   // 数据
+   let dataMap = [
+       {"name": "Romania","value": 0},
+       {"name": "Canada","value": 0},
+       {"name": "China","value": 0},
+       {"name": "United States","value": 0},
+       {"name": "Kazakhstan","value": 2},
+       {"name": "Uzbekistan","value": 2},
+       {"name": "Indonesia","value": 2},
+       {"name": "Argentina","value": 2},
+       {"name": "Chile","value": 0},
+       {"name": "Kenya","value": 1},
+       {"name": "Chad","value": 1},
+       {"name": "Haiti","value": 1},
+       {"name": "Dominican Rep.","value": 2},
+       {"name": "South Africa","value": 1},
+       {"name": "Lesotho","value": 1},
+       {"name": "Mexico","value": 2},
+       {"name": "Uruguay","value": 0},
+       {"name": "Brazil","value": 2},
+       {"name": "Peru","value": 2},
+       {"name": "Colombia","value": 2},
+       {"name": "Panama","value": 2},
+       {"name": "Costa Rica","value": 2},
+       {"name": "Nicaragua","value": 2},
+       {"name": "Honduras","value": 2},
+       {"name": "El Salvador","value": 2},
+       {"name": "Guatemala","value": 2},
+       {"name": "Ecuador","value": 2},
+       {"name": "Jamaica","value": 2},
+       {"name": "Zimbabwe","value": 1},
+       {"name": "Botswana","value": 1},
+       {"name": "Namibia","value": 1},
+       {"name": "Senegal","value": 1},
+       {"name": "Mali","value": 1},
+       {"name": "Mauritania","value": 1},
+       {"name": "Benin","value": 1},
+       {"name": "Niger","value": 1},
+       {"name": "Nigeria","value": 1},
+       {"name": "Cameroon","value": 1},
+       {"name": "Togo","value": 1},
+       {"name": "Ghana","value": 1},
+       {"name": "Guinea","value": 1},
+       {"name": "Liberia","value": 1},
+       {"name": "Sierra Leone","value": 1},
+       {"name": "Burkina Faso","value": 1},
+       {"name": "Gabon","value": 1},
+       {"name": "Zambia","value": 1},
+       {"name": "Malawi","value": 1},
+       {"name": "Mozambique","value": 1},
+       {"name": "Burundi","value": 1},
+       {"name": "Israel","value": 2},
+       {"name": "Lebanon","value": 2},
+       {"name": "Madagascar","value": 1},
+       {"name": "Gambia","value": 1},
+       {"name": "Tunisia","value": 2},
+       {"name": "Algeria","value": 2},
+       {"name": "Jordan","value": 2},
+       {"name": "United Arab Emirates","value": 2},
+       {"name": "Iraq","value": 1},
+       {"name": "Cambodia","value": 2},
+       {"name": "Thailand","value": 0},
+       {"name": "Myanmar","value": 2},
+       {"name": "Mongolia","value": 2},
+       {"name": "India","value": 2},
+       {"name": "Bangladesh","value": 2},
+       {"name": "Nepal","value": 2},
+       {"name": "Pakistan","value": 1},
+       {"name": "Afghanistan","value": 1},
+       {"name": "Tajikistan","value": 2},
+       {"name": "Kyrgyzstan","value": 2},
+       {"name": "Turkmenistan","value": 2},
+       {"name": "Armenia","value": 2},
+       {"name": "Sweden","value": 0},
+       {"name": "Belarus","value": 0},
+       {"name": "Ukraine","value": 0},
+       {"name": "Poland","value": 0},
+       {"name": "Austria","value": 0},
+       {"name": "Hungary","value": 0},
+       {"name": "Romania","value": 0},
+       {"name": "Lithuania","value": 0},
+       {"name": "Latvia","value": 0},
+       {"name": "Estonia","value": 0},
+       {"name": "Germany","value": 0},
+       {"name": "Bulgaria","value": 0},
+       {"name": "Greece","value": 0},
+       {"name": "Turkey","value": 2},
+       {"name": "Albania","value": 0},
+       {"name": "Croatia","value": 0},
+       {"name": "Switzerland","value": 0},
+       {"name": "Luxembourg","value": 0},
+       {"name": "Belgium","value": 0},
+       {"name": "Netherlands","value": 0},
+       {"name": "Portugal","value": 0},
+       {"name": "Spain","value": 0},
+       {"name": "Ireland","value": 0},
+       {"name": "New Zealand","value": 0},
+       {"name": "Australia","value": 0},
+       {"name": "Sri Lanka","value": 2},
+       {"name": "Italy","value": 0},
+       {"name": "Denmark","value": 0},
+       {"name": "United Kingdom","value": 0},
+       {"name": "Iceland","value": 0},
+       {"name": "Azerbaijan","value": 2},
+       {"name": "Georgia","value": 0},
+       {"name": "Philippines","value": 2},
+       {"name": "Malaysia","value": 2},
+       {"name": "Slovenia","value": 0},
+       {"name": "Finland","value": 0},
+       {"name": "Slovakia","value": 0},
+       {"name": "Japan","value": 0},
+       {"name": "Paraguay","value": 2},
+       {"name": "Yemen","value": 1},
+       {"name": "Saudi Arabia","value": 2},
+       {"name": "Cyprus","value": 0},
+       {"name": "Morocco","value": 2},
+       {"name": "Egypt","value": 2},
+       {"name": "Libya","value": 2},
+       {"name": "Ethiopia","value": 1},
+       {"name": "Uganda","value": 1},
+       {"name": "Rwanda","value": 1},
+       {"name": "Bosnia and Herz.","value": 0},
+       {"name": "Macedonia","value": 0},
+       {"name": "Serbia","value": 0},
+       {"name": "Montenegro","value": 0},
+       {"name": "Russia","value": 0},
+       {"name": "Norway","value": 0},
+       {"name": "France","value": 0},
+       {"name": "Bahrain","value": 1},
+       {"name": "Malta","value": 0},
+       {"name": "Mauritius","value": 0},
+       {"name": "South Korea","value": 0},
+       {"name": "Bosnia and Herzegovina","value": 0},
+       {"name": "Moldova","value": 0},
+       {"name": "Bolivia","value": 1},
+       {"name": "Dominican Republic","value": 1},
+       {"name": "Vietnam","value": 1},
+       {"name": "Maldives","value": 1},
+       {"name": "North Macedonia","value": 0},
+       {"name": "Laos","value": 2},
+       {"name": "Iran","value": 1},
+       {"name": "Comoros","value": 2},
+       {"name": "Tanzania","value": 2},
+
+   ]
+   let option = {
+       backgroundColor: "#02AFDB",
+       title: {    //地图显示标题
+           show: false,
+           text: '',
+           top:"30px",
+           left: 'center',
+           textStyle: {color: '#000'}
+       },
+       visualMap: {   //图列显示柱
+           type: 'piecewise',
+           left:30,
+           realtime: false,
+           calculable : true,
+           color: ['yellow', 'red','green'],
+           pieces: [
+               {gte: 1, label: '比较幸福'},           
+               {gte: 0, lte:1,label: '不幸福'}, 
+               {lt: 1,  label: '很幸福'}                
+           ]
+       },
+       toolbox: {  //工具栏
+           show: false,
+           orient: 'vertical',
+           top:50,
+           itemGap:20,
+           left:30,
+           feature: {
+               dataView: {readOnly: false},
+               restore: {},
+               saveAsImage: {}
+           }
+       },
+       tooltip: {  //提示框组件
+        show: true,
+        trigger: 'item',
+	        padding: 0,
+	        enterable: true,
+	        transitionDuration: 1,
+	        textStyle: {
+	            color: '#818A91',
+	            decoration: 'none',
+	        },
+	        backgroundColor: 'rgba(255,255,255,0.96)',
+	       // borderColor:'#000000',
+	        //borderWidth: 1,
+	        formatter: function(params) {
+	        	console.log('移到某个国家上:',params)
+	            var tipHtml = '';
+                if(params.name == 'China'){
+	            tipHtml = '<div style="box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.3);border-radius:4px;padding:30px 20px;">'+
+	            '<div style="font-size: 16px;">'+params.name+'</div>'+
+	            '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Ladder score:'+5.339+'</div>'+
+	            '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Logged GDP per capita:'+9.673+'</div>'+
+	            '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Social support:'+0.811+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Healthy life expectancy:'+69.593+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Freedom to make life choices:'+0.904+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Generosity:'+-0.146+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Perceptions of corruption:'+0.755+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Fert. Rate:'+1.7+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Med. Age:'+38+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Urban Pop %:'+0.61+'</div>'+
+	            '</div>'}
+                else if(params.name == 'Russia'){
+                    tipHtml = '<div style="box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.3);border-radius:4px;padding:30px 20px;">'+
+	            '<div style="font-size: 16px;">'+params.name+'</div>'+
+	            '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Ladder score:'+5.477+'</div>'+
+	            '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Logged GDP per capita:'+10.189+'</div>'+
+	            '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Social support:'+0.903+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Healthy life expectancy:'+64.703+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Freedom to make life choices:'+0.718+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Generosity:'+-0.111+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Perceptions of corruption:'+0.845+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Fert. Rate:'+1.8+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Med. Age:'+40+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Urban Pop %:'+0.74+'</div>'+
+	            '</div>'
+                }
+                else if(params.name == 'Australia'){
+                    tipHtml = '<div style="box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.3);border-radius:4px;padding:30px 20px;">'+
+	            '<div style="font-size: 16px;">'+params.name+'</div>'+
+	            '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Ladder score:'+7.183+'</div>'+
+	            '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Logged GDP per capita:'+10.796+'</div>'+
+	            '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Social support:'+0.94+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Healthy life expectancy:'+73.9+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Freedom to make life choices:'+0.914+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Generosity:'+0.159+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Perceptions of corruption:'+0.442+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Fert. Rate:'+1.8+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Med. Age:'+38+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Urban Pop %:'+0.85+'</div>'+
+	            '</div>'
+                }
+                else if(params.name == 'United States'){
+                    tipHtml = '<div style="box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.3);border-radius:4px;padding:30px 20px;">'+
+	            '<div style="font-size: 16px;">'+params.name+'</div>'+
+	            '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Ladder score:'+6.951+'</div>'+
+	            '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Logged GDP per capita:'+11.023+'</div>'+
+	            '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Social support:'+0.92+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Healthy life expectancy:'+68.2+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Freedom to make life choices:'+0.837+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Generosity:'+0.098+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Perceptions of corruption:'+0.698+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Fert. Rate:'+1.8+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Med. Age:'+38+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Urban Pop %:'+0.83+'</div>'+
+	            '</div>'
+                }
+                else if(params.name == 'India'){
+                    tipHtml = '<div style="box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.3);border-radius:4px;padding:30px 20px;">'+
+	            '<div style="font-size: 16px;">'+params.name+'</div>'+
+	            '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Ladder score:'+3.819+'</div>'+
+	            '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Logged GDP per capita:'+8.755+'</div>'+
+	            '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Social support:'+0.603+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Healthy life expectancy:'+60.633+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Freedom to make life choices:'+0.893+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Generosity:'+0.089+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Perceptions of corruption:'+0.774+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Fert. Rate:'+2.2+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Med. Age:'+28+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Urban Pop %:'+0.35+'</div>'+
+	            '</div>'
+                }
+                else if(params.name == 'Japan'){
+                    tipHtml = '<div style="box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.3);border-radius:4px;padding:30px 20px;">'+
+	            '<div style="font-size: 16px;">'+params.name+'</div>'+
+	            '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Ladder score:'+5.94+'</div>'+
+	            '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Logged GDP per capita:'+10.611+'</div>'+
+	            '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Social support:'+0.884+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Healthy life expectancy:'+75.1+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Freedom to make life choices:'+0.796+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Generosity:'+-0.258+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Perceptions of corruption:'+0.638+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Fert. Rate:'+1.4+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Med. Age:'+48+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Urban Pop %:'+0.92+'</div>'+
+	            '</div>'
+                }
+                else if(params.name == 'Finland'){
+                    tipHtml = '<div style="box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.3);border-radius:4px;padding:30px 20px;">'+
+	            '<div style="font-size: 16px;">'+params.name+'</div>'+
+	            '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Ladder score:'+7.842+'</div>'+
+	            '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Logged GDP per capita:'+10.755+'</div>'+
+	            '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Social support:'+0.954+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Healthy life expectancy:'+72+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Freedom to make life choices:'+0.949+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Generosity:'+-0.098+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Perceptions of corruption:'+0.186+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Fert. Rate:'+1.5+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Med. Age:'+43+'</div>'+
+                '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>Urban Pop %:'+0.86+'</div>'+
+	            '</div>'
+                }
+                else{
+                    tipHtml = '<div style="box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.3);border-radius:4px;padding:30px 20px;">'+
+	            '<div style="font-size: 16px;">'+params.name+'</div>'+
+	            '<div style="padding:6px 0;"><i style="display: inline-block;margin-bottom: 3px;width:6px;margin-right:6px;height: 6px;background: #3472EE;border-radius: 50%;"></i>还未添加数据进来</div>'+'</div>'
+                }
+	            return tipHtml;
+	        }
+       },
+       series: [{
+           name:"使用情况",
+           type: 'map',
+           mapType: 'world',
+           roam: true,
+           zoom: 1,
+           mapLocation: {y: 100},
+           data: dataMap,   //绑定数据
+           symbolSize: 12,
+           label: {
+               normal: {show: false},
+               emphasis: {show: true}
+           },
+           itemStyle: {
+               emphasis: {
+                   borderColor: 'transparent',
+                   borderWidth: 1
+               }
+           }
+       }],
+   };
+   worldChart.setOption(option);
+</script>
